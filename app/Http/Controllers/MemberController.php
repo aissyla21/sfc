@@ -28,8 +28,8 @@ class MemberController extends Controller
         if (!$location) {
             $location = TrainingLocation::create([
                 'name' => 'Kedai Ibu Dina',
-                'latitude' => -6.3491520, 
-                'longitude' => 106.7651687, 
+                'latitude' => -7.0584846, 
+                'longitude' => 110.3096901, 
                 'radius_meter' => 1000
             ]);
         }
