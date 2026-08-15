@@ -1,0 +1,1 @@
+<?php $ch = curl_init('https://share.google/tuoMMgrfzk0QHZe96'); curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true); curl_exec($ch); echo curl_getinfo($ch, CURLINFO_EFFECTIVE_URL);

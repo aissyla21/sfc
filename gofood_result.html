@@ -1,0 +1,43 @@
+
+<script>
+    var seqid = "bb472527d8bdf6bdc9fc06688ce43c7a8e230fd2248d1df93551c52f541f40a2bd3b30c18bfebb0671809c3d31262ba8d5f081b0c5b2069da9cf4010371a354e208b37113a980d52a6ba27f39cf4b1ee742e4c0f2c843972__captcha"
+</script>
+<script id="CaptchaScript" src="https://sg.captcha.qcloud.com/Captcha.js"></script>
+<script>
+    var captcha = new Captcha('188999876', function(res){
+        var captchaResult = []
+        captchaResult.push(res.ret)
+
+        if(res.ret === 0){
+            captchaResult.push(res.ticket)
+            captchaResult.push(res.randstr)
+            captchaResult.push(seqid)
+        }
+
+        var content = captchaResult.join('\n')
+        loadXMLDoc("/WafCaptcha", content)
+    })
+
+    function loadXMLDoc(servPath, content) {
+        var xmlhttp = null;
+        if (window.XMLHttpRequest) {
+            xmlhttp = new XMLHttpRequest();
+        }
+        else if (window.ActiveXObject) {
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+
+        if (xmlhttp != null) {
+            xmlhttp.open("POST", servPath, true);
+            xmlhttp.send(content);
+            xmlhttp.onreadystatechange = function() {
+                if (xmlhttp.readyState == 4) {
+                    if (xmlhttp.status == 200) {
+                        window.location.reload(true)
+                    }
+                }
+            }
+        }
+    }
+    captcha.show()
+</script>
